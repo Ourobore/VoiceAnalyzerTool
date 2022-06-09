@@ -16,17 +16,18 @@
     <script type="text/javascript" src="index.js"></script>
   </head>
   <body>
-    <!-- Javascript tests -->
-    <div>Hello World!!</div>
+    <h1>Voice Analyzer</h1>
     <br />
-    <div>
-      <center><h2 id="counter-label">0</h2></center>
-      <button onclick="store('test', 'this is a test')">Click me</button>
-    </div>
     <br />
 
     <!-- Web Audio API tests -->
-    <audio controls src="/file_sample_small.mp3"></audio>
-    <button onclick="audio()">WebAudio</button>
+    <!-- <audio id="testAudio" controls src="/file_sample_small.mp3"></audio> -->
+    <input
+      id="newAudio"
+      type="file"
+      accept="audio/*"
+      onchange="addFile(this.files[0])"
+    />
+    <canvas id="testRender" width="500" height="300"></canvas>
   </body>
 </html>
