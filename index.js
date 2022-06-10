@@ -1,22 +1,24 @@
 console.log("[index.js] Loaded");
 
-const audioFiles = new Array();
-function addFile(file) {
-  console.log("New file: ", file);
-  audioFiles.push(file);
-  console.log("Files: ", audioFiles);
-}
-
 window.onload = function () {
-  // Web Audio API tests
-  const audioElement = document.getElementById("newAudio");
+  // DOM elements
+  const uploadElement = document.getElementById("newAudio");
+  const audioElement = document.getElementById("audioFile");
 
-  audioElement.onload = function () {
+  // Get input file
+  uploadElement.addEventListener("change", () => {
+    // console.log("New file: ", uploadElement.files[0]);
+    audioElement.src = URL.createObjectURL(uploadElement.files[0]);
+  });
+
+  // TO-DO: Compute audio file to get what we want
+  audioElement.addEventListener("loadeddata", () => {
+    console.log("Loaded audio");
     // Analyzer setup
-    const audioContext = new AudioContext();
-    const audioTrack = audioContext.createMediaElementSource(audioElement);
-    const audioAnalyzer = audioContext.createAnalyser();
-    audioTrack.connect(audioAnalyzer);
-    audioAnalyzer.connect(audioContext.destination);
-  };
+    // const audioContext = new AudioContext();
+    // const audioTrack = audioContext.createMediaElementSource(audioElement);
+    // const audioAnalyzer = audioContext.createAnalyser();
+    // audioTrack.connect(audioAnalyzer);
+    // audioAnalyzer.connect(audioContext.destination);
+  });
 };
